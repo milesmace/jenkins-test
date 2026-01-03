@@ -1,26 +1,19 @@
 pipeline {
-    agent any
+  agent {
+    docker { image 'node:20-alpine' }
+  }
 
-    stages {
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/zenitsua2416/jenkins-test.git'
-            }
-        }
-
-        stage('Run files') {
-            steps {
-                sh 'node run.js'
-            }
-        }
+  stages {
+    stage('Get Version') {
+      steps {
+        sh 'node --version'
+      }
     }
 
-    post {
-        success {
-            echo 'Build successful'
-        }
-        failure {
-            echo 'Build failed!!'
-        }
+    stage('Get Version') {
+      steps {
+        sh 'node run.js'
+      }
     }
+  }
 }
