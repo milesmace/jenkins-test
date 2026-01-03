@@ -1,16 +1,14 @@
 pipeline {
   agent {
-    docker { image 'node:20-alpine' }
+    docker { image 'node:16-alpine' }
   }
-
   stages {
-    stage('Get Version') {
+    stage('Test') {
       steps {
         sh 'node --version'
       }
     }
-
-    stage('Get Version') {
+    stage('Run File') {
       steps {
         sh 'node run.js'
       }
